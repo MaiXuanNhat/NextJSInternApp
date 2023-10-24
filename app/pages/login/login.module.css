@@ -15,6 +15,11 @@
   background-color: white;
 }
 
+.logo {
+  display: flex;
+  justify-content: center;
+}
+
 .inputField {
   padding: 5px;
   border: 1px solid black;
