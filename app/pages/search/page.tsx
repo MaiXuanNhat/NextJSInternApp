@@ -13,6 +13,7 @@ import {
   UserCircleIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/solid";
 import {
   Navbar,
@@ -30,8 +31,8 @@ import {
   ListItem,
   IconButton,
 } from "@material-tailwind/react";
-import { Datepicker } from "flowbite-react";
-import { TableRow } from "flowbite-react/lib/esm/components/Table/TableRow";
+import "flatpickr/dist/flatpickr.css";
+import Flatpickr from "react-flatpickr";
 function Icon({ id, open }: { id: number; open: number }) {
   return (
     <svg
@@ -99,8 +100,8 @@ export default function Search() {
   const handleOpen = (value: number) => setOpen(open === value ? 0 : value);
 
   return (
-    <div className="flex flex-row ">
-      <div className="bg-white">
+    <div className="flex flex-row">
+      <div className="bg-white lg-max:hidden">
         <div className="mb-2 flex items-center gap-4 p-4">
           <Typography variant="h5" color="red" className="font-bold">
             メヒウス製薬
@@ -158,7 +159,7 @@ export default function Search() {
         </Sidebar>
       </div>
       <div className="bg-white p-8">
-        <Navbar className="mx-auto max-w-screen-xl px-4 py-2 lg:px-8 lg:py-4">
+        <Navbar className="mx-auto max-w-screen-xl px-4 py-2 lg:px-8 lg:py-4  ">
           <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
             <div className="flex flex-row justify-between">
               <Typography
@@ -209,174 +210,178 @@ export default function Search() {
             <AccordionBody>
               <form className="mt-4 mb-2 justify-start">
                 <div className="mb-1 flex flex-col gap-6">
-                  <div className="flex gap-4 ">
+                  <div className="grid grid-cols-4 gap-4  ">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64  "
                     >
                       願客ID
                     </Typography>
                     <Input
                       size="lg"
                       placeholder=""
-                      className="w-64 !border-t-blue-gray-200 focus:!border-t-gray-900"
+                      className="lg:w-64 !border-t-blue-gray-200 focus:!border-t-gray-900"
                       labelProps={{
                         className: "before:content-none after:content-none",
                       }}
                       crossOrigin={undefined}
                     />
                   </div>
-                  <div className="flex gap-4">
+                  <div className="grid grid-cols-4 gap-4 ">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64 "
                     >
                       氏名/カナ
                     </Typography>
                     <Input
                       size="lg"
                       placeholder=""
-                      className=" w-64 !border-t-blue-gray-200 focus:!border-t-gray-900"
+                      className="lg:w-64  !border-t-blue-gray-200 focus:!border-t-gray-900"
                       labelProps={{
                         className: "before:content-none after:content-none",
                       }}
                       crossOrigin={undefined}
                     />
-                    <div className="">
-                      <Select label="完全一致">
+                    <div className="lg:w-64">
+                      <Select label="完全一致" size="lg">
                         <Option>1</Option>
                         <Option>2</Option>
                         <Option>3</Option>
                       </Select>
                     </div>
                   </div>
-                  <div className="flex gap-4">
+                  <div className="grid grid-cols-4 gap-4 ">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64"
                     >
                       電話番号
                     </Typography>
                     <Input
                       size="lg"
                       placeholder=""
-                      className="  !border-t-blue-gray-200 focus:!border-t-gray-900"
+                      className=" lg:w-64 !border-t-blue-gray-200 focus:!border-t-gray-900"
                       labelProps={{
                         className: "before:content-none after:content-none",
                       }}
                       crossOrigin={undefined}
                     />
-                    <div className="">
-                      <Select label="完全一致">
+                    <div className="lg:w-64">
+                      <Select label="完全一致" size="lg">
                         <Option>1</Option>
                         <Option>2</Option>
                         <Option>3</Option>
                       </Select>
                     </div>
                   </div>
-                  <div className="flex gap-4">
+                  <div className="grid grid-cols-4 gap-4 ">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64"
                     >
                       住所
                     </Typography>
                     <Input
                       size="lg"
                       placeholder=""
-                      className="  !border-t-blue-gray-200 focus:!border-t-gray-900"
+                      className=" lg:w-64 !border-t-blue-gray-200 focus:!border-t-gray-900"
                       labelProps={{
                         className: "before:content-none after:content-none",
                       }}
                       crossOrigin={undefined}
                     />
-                    <div className="">
-                      <Select label="前方一致">
+                    <div className="lg:w-64">
+                      <Select label="前方一致" size="lg">
                         <Option>1</Option>
                         <Option>2</Option>
                         <Option>3</Option>
                       </Select>
                     </div>
                   </div>
-                  <div className="flex gap-4">
+                  <div className="grid grid-cols-4 gap-4 ">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64"
                     >
                       メールアドレス
                     </Typography>
                     <Input
                       size="lg"
                       placeholder=""
-                      className="  !border-t-blue-gray-200 focus:!border-t-gray-900"
+                      className="lg:w-64  !border-t-blue-gray-200 focus:!border-t-gray-900"
                       labelProps={{
                         className: "before:content-none after:content-none",
                       }}
                       crossOrigin={undefined}
                     />
-                    <div className="">
-                      <Select label="前方一致">
+                    <div className="lg:w-64">
+                      <Select label="前方一致" size="lg">
                         <Option>1</Option>
                         <Option>2</Option>
                         <Option>3</Option>
                       </Select>
                     </div>
                   </div>
-                  <div className="flex gap-4">
+                  <div className="grid grid-cols-4 gap-4">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64"
                     >
                       外部会員連携
                     </Typography>
-                    <div className="flex gap-10">
+                    <div className="col-span-3 justify-start">
                       <Radio
                         defaultChecked
-                        name="type"
+                        name="externalMemberCollaboration"
                         label="全て"
                         crossOrigin={undefined}
                       />
-                      <Radio name="type" label="連携" crossOrigin={undefined} />
                       <Radio
-                        name="type"
+                        name="externalMemberCollaboration"
+                        label="連携"
+                        crossOrigin={undefined}
+                      />
+                      <Radio
+                        name="externalMemberCollaboration"
                         label="未連携"
                         crossOrigin={undefined}
                       />
                     </div>
                   </div>
-                  <div className="my-4 flex items-center gap-4 ">
+                  <div className="grid grid-cols-4 gap-4  ">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64"
                     >
                       外部会員旧
                     </Typography>
                     <Input
                       size="lg"
                       placeholder=""
-                      className="  !border-t-blue-gray-200 focus:!border-t-gray-900"
+                      className=" lg:w-64 !border-t-blue-gray-200 focus:!border-t-gray-900"
                       labelProps={{
                         className: "before:content-none after:content-none",
                       }}
                       crossOrigin={undefined}
                     />
                   </div>
-                  <div className="flex gap-4">
+                  <div className="grid grid-cols-4 gap-4">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64"
                     >
                       性別
                     </Typography>
-                    <div className="flex gap-10">
+                    <div className="col-span-3 justify-start">
                       <Checkbox
                         name="type"
                         label="全て"
@@ -399,242 +404,298 @@ export default function Search() {
                       />
                     </div>
                   </div>
-                  <div className="my-4 flex items-center gap-4 ">
+                  <div className="grid grid-cols-4 gap-4  ">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64"
                     >
                       生年月日
                     </Typography>
-                    <Datepicker />
-                    <p>~</p>
-                    <Datepicker />
+                    <div className="border border-black rounded-md flex flex-row justify-between lg:w-64">
+                      <Flatpickr
+                        className="focus: outline-none ml-4 "
+                        options={{
+                          dateFormat: "Y/m/d",
+                          mode: "single",
+                          defaultDate: ["1990/01/01"],
+                        }}
+                      />
+                      <IconButton variant="text">
+                        <XMarkIcon className="h-4 w-4" />
+                      </IconButton>
+                    </div>
+                    <div className="flex ">
+                      <p className="text-2xl mr-3 mt-1">~</p>
+                      <div className="border border-black rounded-md flex flex-row">
+                        <Flatpickr
+                          className="focus: outline-none ml-4 "
+                          options={{
+                            dateFormat: "Y/m/d",
+                            mode: "single",
+                            defaultDate: ["today"],
+                          }}
+                        />
+                        <IconButton variant="text">
+                          <XMarkIcon className="h-4 w-4" />
+                        </IconButton>
+                      </div>
+                    </div>
                   </div>
-                  <div className="my-4 flex items-center gap-4 ">
+                  <div className="grid grid-cols-4 gap-4 ">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64"
                     >
                       マーケティングランク
                     </Typography>
-                    <div className="border border-slate-300 rounded-lg border-black">
-                      <List>
+                    <div className="lg:w-64">
+                      <List className="border border-slate-300 rounded-lg border-black">
                         <ListItem>VIP</ListItem>
                         <ListItem>F1</ListItem>
                         <ListItem>F2</ListItem>
                       </List>
                     </div>
                   </div>
-                  <div className="my-4 flex items-center gap-4 ">
+                  <div className="grid grid-cols-4 gap-4  ">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64"
                     >
                       顧客ランク
                     </Typography>
-                    <div className="border border-slate-300 rounded-lg border-black">
-                      <List>
+                    <div className="lg:w-64">
+                      <List className="border border-slate-300 rounded-lg border-black">
                         <ListItem>ゴールド</ListItem>
                         <ListItem>シルバー</ListItem>
                         <ListItem>プロンズ</ListItem>
                       </List>
                     </div>
                   </div>
-                  <div className="my-4 flex items-center gap-4 ">
+                  <div className="grid grid-cols-4 gap-4  ">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64"
                     >
                       初回購入
                     </Typography>
-                    <Datepicker />
-                    <p>~</p>
-                    <Datepicker />
+                    <div className="border border-black rounded-md flex flex-row lg:w-64 justify-between">
+                      <Flatpickr
+                        className="focus: outline-none ml-4 "
+                        options={{
+                          dateFormat: "Y/m/d",
+                          mode: "single",
+                          defaultDate: ["1990/01/01"],
+                        }}
+                      />
+                      <IconButton variant="text">
+                        <XMarkIcon className="h-4 w-4" />
+                      </IconButton>
+                    </div>
+                    <div className="flex flex-cols">
+                      <p className="text-2xl mr-3 mt-1">~</p>
+                      <div className="border border-black rounded-md flex flex-row justify-between">
+                        <Flatpickr
+                          className="focus: outline-none ml-4 "
+                          options={{
+                            dateFormat: "Y/m/d",
+                            mode: "single",
+                            defaultDate: ["today"],
+                          }}
+                        />
+                        <IconButton variant="text">
+                          <XMarkIcon className="h-4 w-4" />
+                        </IconButton>
+                      </div>
+                    </div>
                   </div>
-                  <div className="my-4 flex items-center gap-4 ">
+                  <div className="grid grid-cols-4 gap-4  ">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64"
                     >
                       初回受付媒体
                     </Typography>
-                    <div className="border border-slate-300 rounded-lg border-black">
-                      <List>
+                    <div className="lg:w-64">
+                      <List className="border border-slate-300 rounded-lg border-black">
                         <ListItem>INTイン</ListItem>
                       </List>
                     </div>
                   </div>
-                  <div className="flex gap-4">
+                  <div className="grid grid-cols-4 gap-4">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64"
                     >
                       返信メール設定
                     </Typography>
-                    <div className="flex gap-10">
+                    <div className="col-span-3 justify-start">
                       <Radio
-                        name="type"
+                        name="replyEmailSettings"
                         label="全て"
                         defaultChecked
                         crossOrigin={undefined}
                       />
                       <Radio
-                        name="type"
+                        name="replyEmailSettings"
                         label="送信OK (受取)"
                         crossOrigin={undefined}
                       />
                       <Radio
-                        name="type"
+                        name="replyEmailSettings"
                         label="送信拒否(拒否)"
                         crossOrigin={undefined}
                       />
                     </div>
                   </div>
-                  <div className="flex gap-4">
+                  <div className="grid grid-cols-4 gap-4">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64"
                     >
                       情報メール設定
                     </Typography>
-                    <div className="flex gap-10">
+                    <div className="col-span-3 justify-start">
                       <Radio
-                        name="type"
+                        name="informationEmailSettings"
                         label="全て"
                         defaultChecked
                         crossOrigin={undefined}
                       />
                       <Radio
-                        name="type"
+                        name="informationEmailSettings"
                         label="送信OK (受取)"
                         crossOrigin={undefined}
                       />
                       <Radio
-                        name="type"
+                        name="informationEmailSettings"
                         label="送信拒否(拒否)"
                         crossOrigin={undefined}
                       />
                     </div>
                   </div>
-                  <div className="flex gap-4">
+                  <div className="grid grid-cols-4 gap-4">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64"
                     >
                       受注保留条件設定
                     </Typography>
-                    <div className="flex gap-10">
+                    <div className="col-span-3 justify-start">
                       <Radio
-                        name="type"
+                        name="orderHoldConditionSetting"
                         label="全て"
                         defaultChecked
                         crossOrigin={undefined}
                       />
                       <Radio
-                        name="type"
+                        name="orderHoldConditionSetting"
                         label="「強制的に受注保留にする」設定中"
                         crossOrigin={undefined}
                       />
                       <Radio
-                        name="type"
+                        name="orderHoldConditionSetting"
                         label="「受注保留条件に準する」設定中"
                         crossOrigin={undefined}
                       />
                     </div>
                   </div>
-                  <div className="flex gap-4">
+                  <div className="grid grid-cols-4 gap-4">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64"
                     >
                       取引停止設定
                     </Typography>
-                    <div className="flex gap-10">
+                    <div className="col-span-3 justify-start">
                       <Radio
-                        name="type"
+                        name="tradingStopSetting"
                         label="全て"
                         defaultChecked
                         crossOrigin={undefined}
                       />
                       <Radio
-                        name="type"
+                        name="tradingStopSetting"
                         label="停止中"
                         crossOrigin={undefined}
                       />
-                      <Radio name="type" label="通常" crossOrigin={undefined} />
+                      <Radio
+                        name="tradingStopSetting"
+                        label="通常"
+                        crossOrigin={undefined}
+                      />
                     </div>
                   </div>
-                  <div className="flex gap-4">
+                  <div className="grid grid-cols-4 gap-4 ">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64"
                     >
                       顧客メモ
                     </Typography>
                     <Input
                       size="lg"
                       placeholder=""
-                      className="  !border-t-blue-gray-200 focus:!border-t-gray-900"
+                      className="lg:w-64  !border-t-blue-gray-200 focus:!border-t-gray-900"
                       labelProps={{
                         className: "before:content-none after:content-none",
                       }}
                       crossOrigin={undefined}
                     />
-                    <div className="">
-                      <Select label="前方一致">
+                    <div className="lg:w-64">
+                      <Select label="前方一致" size="lg">
                         <Option>1</Option>
                         <Option>2</Option>
                         <Option>3</Option>
                       </Select>
                     </div>
                   </div>
-                  <div className="flex gap-4">
+                  <div className="grid grid-cols-4 gap-4">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64"
                     >
                       顧客シャッター
                     </Typography>
-                    <div className="flex gap-10">
+                    <div className="col-span-3 justify-start">
                       <Radio
-                        name="type"
+                        name="customerShutter"
                         label="全て"
                         defaultChecked
                         crossOrigin={undefined}
                       />
                       <Radio
-                        name="type"
+                        name="customerShutter"
                         label="表示設定中"
                         crossOrigin={undefined}
                       />
                       <Radio
-                        name="type"
+                        name="customerShutter"
                         label="未設定"
                         crossOrigin={undefined}
                       />
                     </div>
                   </div>
-                  <div className="my-4 flex items-center gap-4 ">
+                  <div className="grid grid-cols-4 gap-4  ">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64"
                     >
                       顧客状態
                     </Typography>
-                    <div className="border border-slate-300 rounded-lg border-black">
-                      <List>
+                    <div className="lg:w-64">
+                      <List className="border border-slate-300 rounded-lg border-black">
                         <ListItem>通常</ListItem>
                         <ListItem>個人情報削除</ListItem>
                         <ListItem>ブラック</ListItem>
@@ -642,100 +703,152 @@ export default function Search() {
                       </List>
                     </div>
                   </div>
-                  <div className="flex gap-4">
+                  <div className="grid grid-cols-4 gap-4">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64"
                     >
                       カード登録
                     </Typography>
-                    <div className="flex gap-10">
+                    <div className="col-span-3 justify-start">
                       <Radio
-                        name="type"
+                        name="cardRegistration"
                         label="全て"
                         defaultChecked
                         crossOrigin={undefined}
                       />
                       <Radio
-                        name="type"
+                        name="cardRegistration"
                         label="有効力ードあり"
                         crossOrigin={undefined}
                       />
                       <Radio
-                        name="type"
+                        name="cardRegistration"
                         label="有効力ードなし"
                         crossOrigin={undefined}
                       />
                     </div>
                   </div>
-                  <div className="flex gap-4">
+                  <div className="grid grid-cols-4 gap-4">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64"
                     >
                       定期購入
                     </Typography>
-                    <div className="flex gap-10">
+                    <div className="col-span-3 justify-start">
                       <Radio
-                        name="type"
+                        name="regularPurchase"
                         label="全て"
                         defaultChecked
                         crossOrigin={undefined}
                       />
                       <Radio
-                        name="type"
+                        name="regularPurchase"
                         label="定期購入あり"
                         crossOrigin={undefined}
                       />
                       <Radio
-                        name="type"
+                        name="regularPurchase"
                         label="定期購入なし"
                         crossOrigin={undefined}
                       />
                     </div>
                   </div>
-                  <div className="my-4 flex items-center gap-4 ">
+                  <div className="grid grid-cols-4 gap-4  ">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64"
                     >
                       登録日
                     </Typography>
-                    <Datepicker />
-                    <p>~</p>
-                    <Datepicker />
+                    <div className="border border-black rounded-md flex flex-row lg:w-64 justify-between">
+                      <Flatpickr
+                        className="focus: outline-none ml-4 "
+                        options={{
+                          dateFormat: "Y/m/d",
+                          mode: "single",
+                          defaultDate: ["1990/01/01"],
+                        }}
+                      />
+                      <IconButton variant="text">
+                        <XMarkIcon className="h-4 w-4" />
+                      </IconButton>
+                    </div>
+                    <div className="flex flex-cols">
+                      <p className="text-2xl mr-3 mt-1">~</p>
+                      <div className="border border-black rounded-md flex flex-row">
+                        <Flatpickr
+                          className="focus: outline-none ml-4 "
+                          options={{
+                            dateFormat: "Y/m/d",
+                            mode: "single",
+                            defaultDate: ["today"],
+                          }}
+                        />
+                        <IconButton variant="text">
+                          <XMarkIcon className="h-4 w-4" />
+                        </IconButton>
+                      </div>
+                    </div>
                   </div>
-                  <div className="my-4 flex items-center gap-4 ">
+                  <div className="grid grid-cols-4 gap-4  ">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48"
+                      className="-mb-3 lg:w-64"
                     >
                       個人情報削除日
                     </Typography>
-                    <Datepicker />
-                    <p>~</p>
-                    <Datepicker />
+                    <div className="border border-black rounded-md flex flex-row lg:w-64 justify-between">
+                      <Flatpickr
+                        className="focus: outline-none ml-4 "
+                        options={{
+                          dateFormat: "Y/m/d",
+                          mode: "single",
+                          defaultDate: ["1990/01/01"],
+                        }}
+                      />
+                      <IconButton variant="text">
+                        <XMarkIcon className="h-4 w-4" />
+                      </IconButton>
+                    </div>
+                    <div className="flex flex-cols">
+                      <p className="text-2xl mr-3 mt-1">~</p>
+                      <div className="border border-black rounded-md flex flex-row">
+                        <Flatpickr
+                          className="focus: outline-none ml-4 "
+                          options={{
+                            dateFormat: "Y/m/d",
+                            mode: "single",
+                            defaultDate: ["today"],
+                          }}
+                        />
+                        <IconButton variant="text">
+                          <XMarkIcon className="h-4 w-4" />
+                        </IconButton>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex gap-4 justify-end">
+                  <div className="flex gap-4 justify-end mt-6">
                     <Typography
                       variant="h6"
                       color="blue-gray"
-                      className="-mb-3 w-48 mt-2 ml-2 font-semibold flex items-center text-sm mr-1.5 h-5 flex-shrink-0"
+                      className="-mb-3 w-28 mt-2 ml-2 font-semibold flex items-center text-sm h-5 flex-shrink-0"
                     >
                       検索結果表示件数
                     </Typography>
                     <div className="">
-                      <Select label="数量">
+                      <Select label="数量" size="lg">
                         <Option>5</Option>
                         <Option>10</Option>
                         <Option>15</Option>
                       </Select>
                     </div>
-                    <p className="mt-2 ml-2 font-semibold flex items-center text-sm mr-1.5 h-5 w-5 flex-shrink-0">
+                    <p className="mt-2 -ml-2 font-semibold flex items-center text-sm mr-1.5 h-5 w-1 flex-shrink-0">
                       件
                     </p>
                     <Button
